@@ -70,14 +70,11 @@ def generate_cv_pdf():
         education.append(
             {'degree': degree.strip(), 'university': university.strip()})
     about_me = entry_about_me.get("1.0", END)
-    # Create QR code
     qrcode = pyqrcode.create(website)
     qrcode.png('mywebsite.png', scale=6)
-    # Validate input
     if not name or not email or not phone_number or not address or not skills or not work_experience or not education or not about_me:
         messagebox.showerror("Error", "Please fill in all the fields.")
         return
-    # Create PDF CV
     cv = PDFCV()
     cv.generate_cv(name, email, phone_number, address, skills,
                    work_experience, education, about_me)
@@ -85,7 +82,6 @@ def generate_cv_pdf():
     messagebox.showinfo("Success", "PDF CV generated successfully.")
 window = Tk()
 window.title("RESUME BUILDER")
-# Create labels and entry fields for personal information
 label_name = Label(window, text="Name:")
 label_name.pack()
 entry_name = Entry(window)
